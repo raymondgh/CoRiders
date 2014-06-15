@@ -12,6 +12,32 @@ body {
 	padding: 10px;
 }
 
+button {
+	border-radius: 2px;
+	padding: 12px 35px;
+	-webkit-appearance: none;
+	border: 0;
+	outline: 0;
+	background: #fff;
+	color: #1c323b;
+	/*text-transform: uppercase;*/
+	font-family: 'Paytone One', sans-serif;
+
+	font-size: 35px;
+	font-weight: 500;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-webkit-transition: background-color .15s;
+	transition: background-color .15s;
+	width: 320px;
+}
+
+
+/* My styles below, existing above */
+
 .btn-buckle {
 	border-radius: 4px;
 	-webkit-appearance: none;
@@ -20,6 +46,7 @@ body {
 	margin-right:5px;
 	background: #FFF422;
 	color: #1c323b;
+	padding:12px;
 	/*text-transform: uppercase;*/
 	font-family: 'Paytone One', sans-serif;
 
@@ -32,9 +59,8 @@ body {
 	-webkit-user-select: none;
 	-webkit-transition: background-color .15s;
 	transition: background-color .15s;
-	width: 120px;
+	width: 90px;
 }
-/* My styles below, existing above */
 
 .list-of-rides {
 	width:700px;
@@ -42,6 +68,7 @@ body {
 
 .ride-card {
 	width:200px;
+	height:380px;
 	background:#ffffff;
 	color:black;
 	border:1px solid #aaaaaa;
@@ -51,6 +78,7 @@ body {
 	overflow:hidden;
 	float:left;
 	text-align:center;
+	font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -62,12 +90,13 @@ body {
 	font: inherit;
 	vertical-align: baseline;
 	text-align:left;
-	background-color:#aaaaaa;
+	background-color:#000000;
+	color: white;
 }
 
 .ride-card h3 {
 	margin:0px;
-	padding:0px;
+	padding:5px;
 	padding-bottom:0px;
 	border: 0;
 	font: inherit;
@@ -77,17 +106,22 @@ body {
 .ride-data {
 }
 
+.to-text {
+	font-size: 2pt;
+}
+
 .ride-card p {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	vertical-align: middle;
 }
 
 .driver-name {
 	padding-left: 3px;
+	background-color:black;
 }
 
 .driver-image {
@@ -101,14 +135,19 @@ body {
 	overflow:hidden;
 }
 
+
+
 .ride-seats-remaining {
 	float:left;
+	vertical-align:middle;
+	padding-top:8px;
+	padding-left:2px;
+
 }
 
-.ride-join {
-	float:right;
+.ride-seats {
+	background-color:eeeeee;
 }
-
 
 .test-image {
 	background-image:url('http://farm6.staticflickr.com/5323/9902848784_cbd10ba3ca_c.jpg');
