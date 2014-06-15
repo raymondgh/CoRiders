@@ -72,6 +72,7 @@ button {
 	background:#ffffff;
 	color:black;
 	border:1px solid #aaaaaa;
+	border-radius:8px;
 	border-bottom:3px solid #bbbbbb;
 	padding:0px;
 	margin:15px;
