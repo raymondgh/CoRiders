@@ -20,7 +20,7 @@ body {
 	background: white;
 	width: 100%;	
 	height: 3px;
-	
+
 }
 
 button {
@@ -46,6 +46,17 @@ button {
 	width: 320px;
 }
 
+.btn-automatic {
+	cursor: pointer;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	right: -50px;
+}
+
+.btn-default {
+	width: 150px;
+}
 .btn-small {
 	border-radius: 2px;
 	padding: 12px 35px;
@@ -69,14 +80,18 @@ button {
 	width: 200px;
 }
 
-.col-sm-10 {
+.col-sm-2 {
 	width: 300px;
+}
+.col-sm-10 {
+	/*width: 500px;*/
 }
 
 .fieldname {
 	width: 250px;
 }
 .form-control {
+
 	display: block;
 	width: 100%;
 	height: 34px;
@@ -95,8 +110,11 @@ button {
 	width: 300px;
 }
 
+.form-group {
+	display: inline-block;
+}
 .form-horizontal .control-label {
-	text-align: right;
+	text-align: left;
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-top: 7px;
@@ -114,6 +132,11 @@ button {
 }
 
 .page {
-	padding-top: 150px;
+	padding-top: 10px;
 	text-align: center;
+}
+
+.offer-ride {
+	width: 322px;
+	margin-top: 25px;
 }
