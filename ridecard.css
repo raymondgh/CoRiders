@@ -1,3 +1,41 @@
+body {
+	background-color: #26DF46;
+	color: white;
+
+	font-family: 'Paytone One', sans-serif;
+	font-size: 25px;
+}
+
+.header {
+	font-size: 55px;
+	text-align: center;
+	padding: 10px;
+}
+
+button {
+	border-radius: 4px;
+	-webkit-appearance: none;
+	border: 0;
+	outline: 0;
+	margin-right:5px;
+	background: #FFF422;
+	color: #1c323b;
+	/*text-transform: uppercase;*/
+	font-family: 'Paytone One', sans-serif;
+
+	font-size: 20px;
+	font-weight: 500;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-webkit-transition: background-color .15s;
+	transition: background-color .15s;
+	width: 120px;
+}
+/* My styles below, existing above */
+
 .list-of-rides {
 	width:700px;
 }
@@ -5,23 +43,47 @@
 .ride-card {
 	width:200px;
 	background:#ffffff;
+	color:black;
 	border:1px solid #aaaaaa;
 	border-bottom:3px solid #bbbbbb;
 	padding:0px;
 	margin:15px;
 	overflow:hidden;
 	float:left;
+	text-align:center;
+
 }
 
-.ride-card h1 {
+.ride-card h2 {
 	margin:0px;
-	padding:10px;
+	padding:0px;
 	padding-bottom:0px;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+	text-align:left;
+	background-color:#aaaaaa;
+}
+
+.ride-card h3 {
+	margin:0px;
+	padding:0px;
+	padding-bottom:0px;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.ride-data {
 }
 
 .ride-card p {
-	margin:0px;
-	padding:10px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 .driver-image {
@@ -33,6 +95,14 @@
 	background-repeat:no-repeat;
 	position:relative;
 	overflow:hidden;
+}
+
+.ride-seats-remaining {
+	float:left;
+}
+
+.ride-join {
+	float:right;
 }
 
 
