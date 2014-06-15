@@ -8,11 +8,20 @@ body {
 }
 
 .header {
-	font-size: 55px;
-	text-align: center;
-	background-color:rgba(0,0,0,0.2);
+	font-size: 40px;
+	text-align: left;
+/*	background-color:rgba(0,0,0,0.2); */
 	color: white;
 	width: 100%;
+	padding-left: 300px;
+	padding-bottom:40px;
+}
+
+.subheader {
+	font-size:16px;
+	font-family:"Gotham Rounded SSm A","Gotham Rounded SSm B",Helvetica,Arial,sans-serif;
+	width:300px;
+
 }
 
 button {
