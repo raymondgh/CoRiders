@@ -157,6 +157,8 @@ button {
 }
 
 #share_ride {
-	width: 220px;
+width: 170px;
+padding: 5px 10px;
+font-size: 25px;
 
 }
