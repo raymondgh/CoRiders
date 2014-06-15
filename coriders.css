@@ -14,7 +14,7 @@ body {
 	color: white;
 	width: 100%;
 	padding-left: 300px;
-	padding-bottom:40px;
+	padding-bottom:20px;
 }
 
 .subheader {
@@ -22,6 +22,20 @@ body {
 	font-family:"Gotham Rounded SSm A","Gotham Rounded SSm B",Helvetica,Arial,sans-serif;
 	width:300px;
 
+}
+
+.rides-subhead {
+	background-color:rgba(0,0,0,.2);
+	height:80px;
+	width:100%;
+	vertical-align: center;
+}
+
+.share-ride-button{
+	float:right;
+	vertical-align: middle;
+	padding-top:9px;
+	height:60px;
 }
 
 button {
