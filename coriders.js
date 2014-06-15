@@ -4,6 +4,7 @@ var usersRef = new Firebase('https://coriders.firebaseio.com/users');
 var trip_type = "home";
 var token = "9d05de7595e7be94c4d099d5d5b62cfaf44cbe9f";
 var vehicleId = "536e697ee4b0dd9485cd972a";
+var trip_username = "sasilukr";
 $(document).ready(function() {
 });
 
@@ -73,7 +74,7 @@ function createRide() {
 			destination : destination_value,
 			type : trip_type,
 			max_passengers: max_passengers_value,
-			driver: username_value,
+			driver: trip_username,
 			meetup_location: meetup_location_value,
 			group : group_value,
 			create_time: new Date()
@@ -92,6 +93,59 @@ function joinRide(rideNdx, username) {
 
 }
 
+function getRides() {
+	ridesRef.once('value', function(snapshot) {
+		var ridecount = snapshot.numChildren();
+		var i = 0;
+		snapshot.forEach(function(childSnapshot) {
+			var driver_username = childSnapshot.child('driver').val();
+			var dept_time = childSnapshot.child('departure_time').val();
+			console.log("Driver : " + JSON.stringify(driver_username));
+			var uRef = new Firebase('https://coriders.firebaseio.com/users/' + driver_username );
+
+			uRef.once('value', function(driverSnapshot) {
+				var fname = driverSnapshot.child('firstname').val();
+				var lname = driverSnapshot.child('lastname').val();
+				var pic = driverSnapshot.child('picture').val();
+
+				var ridecard = $("<div class='ride-card'>"
+					+"<div class='driver-image'><img src='" + pic + "'/></div>"
+					+"<h2 class='driver-name'>"+ fname + " " + lname + "</h2>"+
+					+"<div class='ride-data'><h3 class='ridetime'>About "+ dept_time +"</h3></div>"+
+					+"</div>");
+
+				$("#rides").empty();
+				$("#rides").append(ridecard);
+
+				i++;
+			});
+			
+		});
+	});
+
+}
+
+function displayRides() {
+			// <div class="ride-card">
+   //              <div class="driver-image">
+   //                  <img src="http://farm6.staticflickr.com/5323/9902848784_cbd10ba3ca_c.jpg"/>
+   //              </div>
+   //              <h2 class="driver-name">Harvey Chan</h2>
+                
+   //              <div class="ride-data"> 
+   //              <h3 class="ridetime">About 7:00PM</h3>
+   //              <p>to</p>
+   //              <h3 class="driver-destination">Glen Park</h3>
+   //              </div>
+
+   //              <div class="ride-seats">
+   //                  <p class="ride-seats-remaining">4 Seats</p>
+   //                  <button class="ride-join btn-buckle">
+   //                      <img src="images/seatbuckle.png" width=60px>
+   //                  </button>
+   //              </div>
+   //          </div>
+}
 
 function activateTypePage() {
 	$(".page").addClass("disable");
@@ -108,6 +162,7 @@ function activateViewTrips(tripType) {
 	$(".page").addClass("disable");
 	$("#view_page").removeClass("disable");
 	trip_type = tripType;
+	getRides();
 
 }
 

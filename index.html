@@ -30,42 +30,21 @@
     <div class="header-border"></div>
 
 
-    <div id="type_page" class="page disable">
+    <div id="type_page" class="page">
         <button id="lunch_option type" onclick="activateViewTrips('lunch');"><img class="img_icon" src="images/lunch.png"/>Get Lunch</button>
         <br/>
         <button id="go_home" onclick="activateViewTrips('home');"><img class="img_icon" src="images/home.png"/>Go Home</button>
     </div>
 
     
-    <div id="view_page" class="page ">
+    <div id="view_page" class="page disable ">
         <button id="share_ride" onclick="activateCreateTrip();">Share Ride</button>
 
 
-        <div class="list-of-rides">
+        <div class="list-of-rides" id="rides">
             <!--- All cards go here -->
 
-            <div class="ride-card">
-                <div class="driver-image test-image"></div>
-                <h2 class="driver-name">Harvey Chan</h2>
-                
-                <div class="ride-data"> 
-                <h3 class="ridetime">About 7:00PM</h3>
-                <p>to</p>
-                <h3 class="driver-destination">Glen Park</h3>
-                </div>
-
-                <div class="ride-seats">
-                    <p class="ride-seats-remaining">4 Seats</p>
-                    <button class="ride-join btn-buckle"><img src="images/seatbuckle.png" width=60px></button>
-                </div>
-            </div>
-
-            <div class="ride-card">
-                <div class="driver-image test-image">
-                </div>
-                <h1>Ray Harris</h1>
-                <p>Take Bart and leave me alone.</p>
-            </div>
+            
 
         </div>
     </div>
