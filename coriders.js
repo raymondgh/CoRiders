@@ -5,9 +5,9 @@ var trip_type = "home";
 var token = "9d05de7595e7be94c4d099d5d5b62cfaf44cbe9f";
 var vehicleId = "536e697ee4b0dd9485cd972a";
 var trip_username = "sasilukr";
-var users = [];
+var users = {};
 $(document).ready(function() {
-
+loadUserData() ;
 
 });
 
@@ -15,7 +15,22 @@ function loadUserData() {
 	var uRef = new Firebase('https://coriders.firebaseio.com/users' );
 
 	uRef.once('value', function(driverSnapshot) {
+		driverSnapshot.forEach(function(usersnapshot) {
+			console.log("usersnapshot: " + usersnapshot.name());
+			var nickname = usersnapshot.name();
+			var fname = usersnapshot.child('firstname').val();
+			var lname = usersnapshot.child('lastname').val();
+			var pict = usersnapshot.child('picture').val();
+
+			var user = {};
+			user.firstname = fname;
+			user.lastname = lname;
+			user.picture = pict;
+			users[nickname] = user;	
+		});
+
 	});
+
 }
 
 function locateVehicle() {
@@ -107,6 +122,12 @@ function joinRide(rideNdx, username) {
 
 }
 
+
+function updateOpenSeats(rideNdx, currentOpenSeat) {
+	var txt = (currentOpenSeat-1) + " Seats";
+	$("#seats-remaining-" + rideNdx).text(txt);
+}
+
 function getRides() {
 	$("#rides").empty();
 
@@ -121,41 +142,43 @@ function getRides() {
 			var type = childSnapshot.child('type').val();
 			var destination = childSnapshot.child('destination').val();
 			var max_passengers = childSnapshot.child('max_passengers').val();
+			var passengers = childSnapshot.child('passengers').val();
+			var openseats = max_passengers;
+			if ( passengers != null ) {
+				console.log("Pass Count: " + passengers.length);
+				openseats = max_passengers - passengers.length;
+			}
+			console.log("Passengers: " + passengers);
+			var fname = users[driver_username].firstname;
+			console.log("Firstname: " + fname + " for username " + driver_username);
+			var lname = users[driver_username].lastname;
+			var pic = users[driver_username].picture;
 
-			var uRef = new Firebase('https://coriders.firebaseio.com/users/' + driver_username );
+			var ridecard = $("<div class='ride-card animation-target'>"
+				+"<div class='driver-image'><img src='" + pic + "' style='height: 140%;'/></div>"
+				+"<h2 class='driver-name'>"+ fname + " " + lname + "</h2>"
+				+"<div class='ride-data'><h3 class='ridetime'>About "+ dept_time +"</h3>"
+				+"<p class='to-text'>to</p>"
+				+"<h3 class='driver-destination'>"+ destination +"</h3></div>"
+				+"<div class='ride-seats'>"
+				+"<div class='ride-seats-remaining' id='seats-remaining-"+ i +"'>"+ openseats +" Seats</div>"
+				+"<button class='btn-buckle' onclick='joinRide("+ i + ",\""+ trip_username +"\");updateOpenSeats("+ i + ", "+ openseats + ");'><img src='images/seatbuckle.png' width=60px/></button>"
+				+"</div></div>");
 
-			uRef.once('value', function(driverSnapshot) {
-				var fname = driverSnapshot.child('firstname').val();
-				var lname = driverSnapshot.child('lastname').val();
-				var pic = driverSnapshot.child('picture').val();
-
-				var ridecard = $("<div class='ride-card animation-target'>"
-					+"<div class='driver-image'><img src='" + pic + "'/></div>"
-					+"<h2 class='driver-name'>"+ fname + " " + lname + "</h2>"
-					+"<div class='ride-data'><h3 class='ridetime'>About "+ dept_time +"</h3>"
-					+"<p class='to-text'>to</p>"
-					+"<h3 class='driver-destination'>"+ destination +"</h3></div>"
-					+"<div class='ride-seats'>"
-					+"<div class='ride-seats-remaining'>"+ max_passengers +" Seats</div>"
-					+"<button class='btn-buckle' onclick='joinRide("+ i + ",\""+ trip_username +"\")'><img src='images/seatbuckle.png' width=60px/></button>"
-					+"</div></div>");
-
-				console.log("Child Snapshot " + childSnapshot.name());
-				console.log("Driver " + JSON.stringify(driver_username));
-				console.log("Driving to " + destination);
-				console.log("Displaying Type " + type + ". Current Type " + trip_type);
-				if ( type == trip_type ) {
-					console.log("Adding Ride");
-					$("#rides").append(ridecard);
-				}
-				i++;
-			});
+			console.log("Child Snapshot " + childSnapshot.name());
+			console.log("Driver " + JSON.stringify(driver_username));
+			console.log("Driving to " + destination);
+			console.log("Displaying Type " + type + ". Current Type " + trip_type);
+			if ( type == trip_type ) {
+				console.log("Adding Ride");
+				$("#rides").append(ridecard);
+			}
 		}
 
-		// });
 	});
 
 }
+
 
 function displayRides() {
 	// <div class="ride-card animation-target">
