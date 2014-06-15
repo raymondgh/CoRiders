@@ -1,0 +1,41 @@
+.list-of-rides {
+	width:700px;
+}
+
+.ride-card {
+	width:200px;
+	background:#ffffff;
+	border:1px solid #aaaaaa;
+	border-bottom:3px solid #bbbbbb;
+	padding:0px;
+	margin:15px;
+	overflow:hidden;
+	float:left;
+}
+
+.ride-card h1 {
+	margin:0px;
+	padding:10px;
+	padding-bottom:0px;
+}
+
+.ride-card p {
+	margin:0px;
+	padding:10px;
+}
+
+.driver-image {
+	width:100%;
+	height:200px;
+	padding:0px;
+	margin:0px;
+	background-position:center;
+	background-repeat:no-repeat;
+	position:relative;
+	overflow:hidden;
+}
+
+
+.test-image {
+	background-image:url('http://farm6.staticflickr.com/5323/9902848784_cbd10ba3ca_c.jpg');
+}
