@@ -16,33 +16,29 @@
   
     <script type="text/javascript" src="coriders.js"></script>
 
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: white;
-            color: #333333;
-        }
-    </style>
     <link rel="stylesheet" href="coriders.css">
     <link href='http://fonts.googleapis.com/css?family=Paytone+One' rel='stylesheet' type='text/css'>
-    <script type="text/montage-serialization">
-    {
-        "owner": {
-            "prototype": "montage/ui/loader.reel"
-        }
-    }
-    </script>
+
 </head>
 <body>
     <span class="loading"></span>
+    <div class="header-border" style="  margin-top: 30px;"></div>
     <div class="header">
     	CoRiders
     </div>
+    <div class="header-border"></div>
 
-    <div id="type_page" class="page disable">
+
+    <div id="type_page" class="page">
         <button id="lunch_option type" onclick="activateViewTrips('lunch');"><img class="img_icon" src="images/lunch.png"/>Get Lunch</button>
         <br/>
         <button id="go_home" onclick="activateViewTrips('home');"><img class="img_icon" src="images/home.png"/>Go Home</button>
+    </div>
+
+    
+    <div id="view_page" class="page disable">
+        <button id="share_ride" onclick="activateCreateTrip();">Share Ride</button>
+
     </div>
 
     <div id="createtrip_page" class="page form-horizontal disable">
@@ -53,18 +49,19 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="departure_time" class="col-sm-2 control-label">Departure Time</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="departure_time" placeholder="Departure Time">
-            </div>
-        </div>
-        <div class="form-group">
             <label for="destination" class="col-sm-2 control-label">Destination</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="destination" placeholder="Destination">
             </div>
         </div>
        
+        <div class="form-group">
+            <label for="departure_time" class="col-sm-2 control-label">Departure Time</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="departure_time" placeholder="Departure Time">
+            </div>
+        </div>
+        
         <div class="form-group">
             <label for="max_passengers" class="col-sm-2 control-label">Max # of Passengers</label>
             <div class="col-sm-10">
@@ -79,10 +76,7 @@
         </div>
         <button class="btn-small" onclick="createRide()">Offer Ride</button>
     </div>
-    
-    <div id="view_page">
 
-    </div>
 
 
 </body>

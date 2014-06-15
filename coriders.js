@@ -14,7 +14,7 @@ function locateVehicle() {
 
     $.ajax({
     	beforeSend: function (xhr) {
-	    	xhr.setRequestHeader ("Authorization", "Basic ");
+	    	xhr.setRequestHeader ("Authorization", "Basic " + token);
 		},
 	    url: apiUrl,
 	    type: 'GET',
@@ -22,43 +22,45 @@ function locateVehicle() {
 	    success: function(data) {
 			console.log("Success: connecting to Vehicle Location" + data + ".");
 			console.log("location " + data.location.lat + ", " + data.location.lon);
+			convertToAddress(data.location);
 	      	return true;
 	    },
 	    error: function (error) {
-	      	alert("Error connecting to Automatic API. Error: " + error);
+	      	console.log("Error connecting to Automatic API. Error: " + JSON.stringify(error));
+	      	return false;
+    }});
+}
+
+function convertToAddress(location) {
+
+	var apiUrl = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.lat 
+	+ ","+ location.lon +"&sensor=true";
+
+	$.ajax({
+	    url: apiUrl,
+	    type: 'GET',
+	    dataType: 'json',
+	    success: function(data) {
+			console.log("Success: connecting to Google Maps" + data + ".");
+			console.log("First Matched Address on Google Maps " + address);
+			var address = data.results[0].formatted_address;
+			$('#meetup_location').val(address);
+	      	return true;
+	    },
+	    error: function (error) {
+	      	console.log("Error connecting to Google Maps. Error: " + JSON.stringify(error));
 	      	return false;
     }});
 }
 
 function createRide() {
 
-	var apiUrl = "https://api.automatic.com/v1/dudewheresmycar/" + vehicleId;
-
-    $.ajax({
-    	beforeSend: function (xhr) {
-	    	xhr.setRequestHeader ("Authorization", "Basic ");
-		},
-	    url: apiUrl,
-	    type: 'GET',
-	    dataType: 'json',
-	    success: function(data) {
-			console.log("Success: connecting to Vehicle Location" + data + ".");
-			console.log("")
-	      	return true;
-	    },
-	    error: function (error) {
-	      	alert("Error connecting to Automatic API. Error: " + error);
-	      	return false;
-    }});
-
-
-
 
 	ridesRef.once('value', function(snapshot) {
 		var ridecount = snapshot.numChildren();
 		var dept_time_value = $('#departure_time').val();
 		var destination_value = $('#destination').val();
-		var type_value = $('#type').val();
+		var type_value = trip_type;
 		var max_passengers_value = $('#max_passengers').val();
 		var driver_value = $('#driver').val();
 		var meetup_location_value = $('#meetup_location').val();
@@ -99,6 +101,7 @@ function activateTypePage() {
 function activateCreateTrip() {
 	$(".page").addClass("disable");
 	$("#createtrip_page").removeClass("disable");
+	locateVehicle();
 }
 
 function activateViewTrips(tripType) {
