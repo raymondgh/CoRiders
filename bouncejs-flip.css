@@ -5,7 +5,7 @@
   animation: animation 1000ms linear both;
 }
 
-/* Generated with Bounce.js. Edit at http://bouncejs.com/#{s:[{T:"c",e:"b",d:500,D:0,f:{x:1,y:1},t:{x:0.01,y:1},s:3,b:0},{T:"c",e:"b",d:500,D:500,f:{x:1,y:1},t:{x:100,y:1},s:3,b:4}]} */
+/* Generated with Bounce.js. Edit at http://bouncejs.com/#{s:[{T:"c",e:"b",d:500,D:0,f:{x:1,y:1},t:{x:0.01,y:1},s:3,b:0},{T:"c",e:"b",d:500,D:500,f:{x:1,y:1},t:{x:100,y:1},s:3,b:4}]} 
 
 @-webkit-keyframes animation { 
   0% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
@@ -134,4 +134,5 @@
   98.333333% { -webkit-transform: matrix3d(0.99999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.99999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   100% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
 }
+*/
 

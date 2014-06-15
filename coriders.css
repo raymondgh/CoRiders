@@ -17,6 +17,7 @@ body {
 	padding-bottom:20px;
 }
 
+
 .subheader {
 	font-size:16px;
 	font-family:"Gotham Rounded SSm A","Gotham Rounded SSm B",Helvetica,Arial,sans-serif;
@@ -36,6 +37,18 @@ body {
 	vertical-align: middle;
 	padding-top:9px;
 	height:60px;
+}
+
+.breadcrumb {
+padding: 8px 15px;
+margin-bottom: 20px;
+list-style: none;
+background-color: #f5f5f5;
+/*border-radius: 4px;*/
+}
+
+.breadcrumb>li {
+display: inline-block;
 }
 
 button {

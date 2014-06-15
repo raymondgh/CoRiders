@@ -126,6 +126,13 @@ function joinRide(rideNdx, username) {
 function updateOpenSeats(rideNdx, currentOpenSeat) {
 	var txt = (currentOpenSeat-1) + " Seats";
 	$("#seats-remaining-" + rideNdx).text(txt);
+	$("#ride-card-" + rideNdx).addClass("active-ride");
+}
+
+function updatePassengerList(rideNdx, username) {
+	var list = $("#passengers-" + rideNdx).text();
+	list +=  users[username].firstname + " " + users[username].lastname;
+	$("#passengers-" + rideNdx).text(list);
 }
 
 function getRides() {
@@ -142,11 +149,24 @@ function getRides() {
 			var type = childSnapshot.child('type').val();
 			var destination = childSnapshot.child('destination').val();
 			var max_passengers = childSnapshot.child('max_passengers').val();
+			var meetup_location = childSnapshot.child('meetup_location').val();
 			var passengers = childSnapshot.child('passengers').val();
 			var openseats = max_passengers;
+			var pList = "";
+
 			if ( passengers != null ) {
 				console.log("Pass Count: " + passengers.length);
 				openseats = max_passengers - passengers.length;
+				for ( var j = 0 ; j < passengers.length ; j++ ) {
+					var pName = childSnapshot.child('passengers').child(j).child('name').val();
+					console.log("pName " + JSON.stringify(pName));
+					if ( pName != null ) {
+						if( j != 0 ) { pList += ", ";}
+						pList += (users[pName].firstname + " " + users[pName].lastname);
+
+					}
+				}
+
 			}
 			console.log("Passengers: " + passengers);
 			var fname = users[driver_username].firstname;
@@ -154,16 +174,27 @@ function getRides() {
 			var lname = users[driver_username].lastname;
 			var pic = users[driver_username].picture;
 
-			var ridecard = $("<div class='ride-card animation-target'>"
-				+"<div class='driver-image'><img src='" + pic + "' style='height: 140%;'/></div>"
-				+"<h2 class='driver-name'>"+ fname + " " + lname + "</h2>"
-				+"<div class='ride-data'><h3 class='ridetime'>About "+ dept_time +"</h3>"
+			var ridecard = $("<div class='ride-card animation-target' id='ride-card-"+i+"' >"
+				+"<div class='driver-image' onclick='showCardInfo("+i+")'><img src='" + pic + "' '/></div>"
+				+"<h2 class='driver-name' onclick='showCardInfo("+i+")'>"+ fname + " " + lname + "</h2>"
+				+"<div class='ride-data' onclick='showCardInfo("+i+")'><h3 class='ridetime'>About "+ dept_time +"</h3>"
 				+"<p class='to-text'>to</p>"
 				+"<h3 class='driver-destination'>"+ destination +"</h3></div>"
 				+"<div class='ride-seats'>"
 				+"<div class='ride-seats-remaining' id='seats-remaining-"+ i +"'>"+ openseats +" Seats</div>"
-				+"<button class='btn-buckle' onclick='joinRide("+ i + ",\""+ trip_username +"\");updateOpenSeats("+ i + ", "+ openseats + ");'><img src='images/seatbuckle.png' width=60px/></button>"
+				+"<button class='btn-buckle' onclick='joinRide("+ i + ",\""+ trip_username +"\");updateOpenSeats("+ i + ", "+ openseats + ");updatePassengerList("+ i + ",\""+ trip_username +"\");'>"
+				+"<img src='images/seatbuckle.png' width=60px/></button>"
 				+"</div></div>");
+
+			var infocard = $("<div class='ride-card info-card disable animation-target' id='info-card-"+i+"' onclick='hideCardInfo("+i+")'>"
+				+"<div>Driver: "+ fname + " " + lname + "</div>"
+				+"<div>Meet Up Location: " + meetup_location + "</div>"
+				+"<div>Departure Time: " + dept_time + "</div>"
+				+"<div>Destination: " + destination + "</div>"
+				+"<div id='passengers-"+i+"''>Passengers: "+ 
+				JSON.stringify(pList) 
+				+ "</div>"
+				+"</div>")
 
 			console.log("Child Snapshot " + childSnapshot.name());
 			console.log("Driver " + JSON.stringify(driver_username));
@@ -172,6 +203,7 @@ function getRides() {
 			if ( type == trip_type ) {
 				console.log("Adding Ride");
 				$("#rides").append(ridecard);
+				$("#rides").append(infocard);
 			}
 		}
 
@@ -179,6 +211,21 @@ function getRides() {
 
 }
 
+function showCardInfo(rideNdx) {
+	$("#info-card-" + rideNdx).removeClass("disable");
+	$("#ride-card-" + rideNdx).addClass("disable");
+
+}
+
+function hideCardInfo(rideNdx) {
+	$("#info-card-" + rideNdx).addClass("disable");
+	$("#ride-card-" + rideNdx).removeClass("disable");
+
+}
+
+function toggleCard() {
+
+}
 
 function displayRides() {
 	// <div class="ride-card animation-target">

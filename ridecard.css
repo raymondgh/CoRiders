@@ -8,7 +8,7 @@
 	margin-right:5px;
 	background: #FFF422;
 	color: #1c323b;
-	padding:12px;
+	padding:0px;
 	/*text-transform: uppercase;*/
 	font-family: 'Paytone One', sans-serif;
 
@@ -100,20 +100,36 @@
 	overflow:hidden;
 }
 
-
+.active-ride {
+	border: 5px solid rgb(252, 242, 3);
+	margin: 12px;
+}
 
 .ride-seats-remaining {
-	float:left;
-	vertical-align:middle;
-	padding-top:8px;
-	padding-left:2px;
+	float: left;
+vertical-align: middle;
+ padding-top: 5px; 
+padding-left: 7px;
 
 }
 
 .ride-seats {
 	background-color: #eeeeee;
+margin-top: 10px;
+font-size: 20px;
 }
 
 .test-image {
 	background-image:url('http://farm6.staticflickr.com/5323/9902848784_cbd10ba3ca_c.jpg');
+}
+
+
+.ride-card h6 {
+	font-size: 12px;
+}
+
+.info-card {
+	background-color: #eeeeee;
+
+	font-size: 16px;
 }
