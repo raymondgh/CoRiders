@@ -66,6 +66,7 @@ function createRide() {
 		var driver_value = $('#driver').val();
 		var meetup_location_value = $('#meetup_location').val();
 		var group_value = $('#group').val();
+		group_value = "cbsi";
 
 
 		var rRef = new Firebase('https://coriders.firebaseio.com/rides/' + ridecount);
